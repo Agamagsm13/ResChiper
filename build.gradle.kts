@@ -4,8 +4,8 @@ plugins {
     id("signing")
 }
 
-group = "io.github.goldfish07.reschiper"
-version = "0.1.0-rc6"
+group = "io.github.agamagsm13.reschiper"
+version = "0.1.2-rc6"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
