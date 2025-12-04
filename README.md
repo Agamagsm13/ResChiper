@@ -46,12 +46,37 @@ Before you begin using ResChiper, ensure that your app meets the following requi
 
 #### 1. Add ResChiper Gradle Plugin
 
-In your project's root-level `build.gradle` file, add the ResChiper Gradle plugin to the `buildscript` section:
+**Option A: Using JitPack (Recommended for easy setup)**
+
+In your project's root-level `build.gradle` file, add the ResChiper Gradle plugin:
 
 ```gradle
 buildscript {
   dependencies {
-    classpath "io.github.goldfish07.reschiper:plugin:<latest_version>"
+    // Формат: com.github.USERNAME:REPO:VERSION:artifact
+    classpath "com.github.agamagsm13:reschiper:0.1.2-rc6:plugin"
+    // или используя тег:
+    // classpath "com.github.agamagsm13:reschiper:release/0.1.0-rc6:plugin"
+  }
+  
+  repositories {
+    maven { url 'https://jitpack.io' }
+    mavenCentral()
+    google()
+   }
+}
+```
+
+**Note:** For JitPack, use the format `com.github.USERNAME:REPO:VERSION:artifact` where `artifact` is the artifactId from the publication (in this case "plugin").
+
+**Option B: Using Maven Central**
+
+In your project's root-level `build.gradle` file, add the ResChiper Gradle plugin:
+
+```gradle
+buildscript {
+  dependencies {
+    classpath "io.github.agamagsm13.reschiper:plugin:<latest_version>"
   }
   
   repositories {
@@ -66,7 +91,7 @@ buildscript {
 In your app-level `build.gradle` file, apply the ResChiper plugin:
 
 ```gradle
-apply plugin: "io.github.goldfish07.reschiper"
+apply plugin: "io.github.agamagsm13.reschiper"
 ```
 
 #### 3. Configure the Plugin
