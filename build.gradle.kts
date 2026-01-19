@@ -17,6 +17,13 @@ val sourcesJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
 }
 
+tasks.javadoc {
+    (options as StandardJavadocDocletOptions).apply {
+        addStringOption("Xdoclint:none", "-quiet")
+    }
+    isFailOnError = false
+}
+
 val javadocJar by tasks.registering(Jar::class) {
     from(tasks.javadoc)
     archiveClassifier.set("javadoc")
@@ -102,5 +109,6 @@ publishing {
 }
 
 signing {
+    isRequired = project.hasProperty("signing.keyId")
     sign(publishing.publications["mavenJava"])
 }
