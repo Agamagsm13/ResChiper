@@ -4,7 +4,7 @@ plugins {
     id("signing")
 }
 
-group = "io.github.goldfish07.reschiper"
+group = "io.github.agamagsm13.reschiper"
 version = "0.1.3-rc6"
 
 java {
@@ -64,7 +64,7 @@ publishing {
                 packaging = "jar"
                 name.set("ResChiper")
                 description.set("A tool for obfuscating Android AAB resources")
-                url.set("https://github.com/goldfish07/reschiper")
+                url.set("https://github.com/agamagsm13/reschiper")
 
                 licenses {
                     license {
@@ -81,9 +81,9 @@ publishing {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/goldfish07/reschiper.git")
-                    developerConnection.set("scm:git:ssh://github.com/goldfish07/reschiper.git")
-                    url.set("https://github.com/goldfish07/reschiper")
+                    connection.set("scm:git:git://github.com/agamagsm13/reschiper.git")
+                    developerConnection.set("scm:git:ssh://github.com/agamagsm13/reschiper.git")
+                    url.set("https://github.com/agamagsm13/reschiper")
                 }
             }
         }
@@ -102,5 +102,13 @@ publishing {
 }
 
 signing {
-    sign(publishing.publications["mavenJava"])
+    // Подпись только если есть ключи (для Maven Central)
+    // Для JitPack подпись не требуется
+    val signingKeyId: String? = project.findProperty("signing.keyId") as String?
+    val signingPassword: String? = project.findProperty("signing.password") as String?
+    val signingSecretKeyRingFile: String? = project.findProperty("signing.secretKeyRingFile") as String?
+    
+    if (signingKeyId != null && signingPassword != null && signingSecretKeyRingFile != null) {
+        sign(publishing.publications["mavenJava"])
+    }
 }
