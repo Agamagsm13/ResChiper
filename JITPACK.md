@@ -8,8 +8,8 @@
 ### 2. Создайте тег/релиз на GitHub
 ```bash
 # Создайте тег для версии
-git tag 0.1.2-rc6
-git push origin 0.1.2-rc6
+git tag 0.1.6-rc6
+git push origin 0.1.6-rc6
 
 # Или создайте релиз через GitHub UI:
 # 1. Перейдите в раздел Releases
