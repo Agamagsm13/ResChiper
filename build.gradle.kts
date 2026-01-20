@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.agamagsm13.reschiper"
-version = "0.1.2-rc6"
+version = "0.1.14-rc6"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
