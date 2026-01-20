@@ -220,6 +220,7 @@ public class ResourcesObfuscator {
     }
 
     /**
+     * Upd
      * Obfuscates module entries and returns the mapping rules.
      *
      * @param bundleModule   The bundle module to obfuscate entries for.
