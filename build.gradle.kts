@@ -1,10 +1,19 @@
 plugins {
-    id("java")
+    id("java-gradle-plugin")
     id("maven-publish")
     id("signing")
 }
 
-group = "io.github.goldfish07.reschiper"
+gradlePlugin {
+    plugins {
+        create("resChiper") {
+            id = "io.github.agamagsm13.reschiper"
+            implementationClass = "io.github.goldfish07.reschiper.plugin.ResChiperPlugin"
+        }
+    }
+}
+
+group = "io.github.agamagsm13.reschiper"
 version = "0.1.0-rc6"
 
 java {
