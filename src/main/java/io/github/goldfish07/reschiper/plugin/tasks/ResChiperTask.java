@@ -1,6 +1,6 @@
 package io.github.goldfish07.reschiper.plugin.tasks;
 
-import com.android.build.gradle.api.ApplicationVariant;
+import com.android.build.api.variant.ApplicationVariant;
 import io.github.goldfish07.reschiper.plugin.command.Command;
 import io.github.goldfish07.reschiper.plugin.command.model.DuplicateResMergerCommand;
 import io.github.goldfish07.reschiper.plugin.command.model.FileFilterCommand;
@@ -47,7 +47,7 @@ public class ResChiperTask extends DefaultTask {
      */
     public void setVariantScope(ApplicationVariant variant) {
         this.variant = variant;
-        bundlePath = Bundle.getBundleFilePath(getProject(), variant);
+        bundlePath = Bundle.getBundleFilePath(variant);
         obfuscatedBundlePath = new File(bundlePath.toFile().getParentFile(), resChiperExtension.getObfuscatedBundleName()).toPath();
     }
 
@@ -59,7 +59,7 @@ public class ResChiperTask extends DefaultTask {
     @TaskAction
     public void execute() throws Exception {
         logger.log(Level.INFO, resChiperExtension.toString());
-        keyStore = SigningConfig.getSigningConfig(variant);
+        keyStore = SigningConfig.getSigningConfig(getProject(), variant);
         printSignConfiguration();
         printOutputFileLocation();
         prepareUnusedFile();

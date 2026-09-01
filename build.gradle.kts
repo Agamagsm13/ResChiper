@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.agamagsm13.reschiper"
-version = "0.1.14-rc6"
+version = "0.1.15-rc6"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -33,13 +33,13 @@ dependencies {
 
     implementation(gradleApi())
     implementation("org.jetbrains:annotations:24.1.0")
-    implementation("com.android.tools.build:gradle:8.8.0")
-    implementation("com.android.tools.build:bundletool:1.17.2")
+    compileOnly("com.android.tools.build:gradle:9.3.2")
+    implementation("com.android.tools.build:bundletool:1.18.3")
     implementation("com.google.guava:guava:32.1.3-jre")
     implementation("io.grpc:grpc-protobuf:1.59.1")
-    implementation("com.android.tools.build:aapt2-proto:8.8.0-12006047")
+    implementation("com.android.tools.build:aapt2-proto:9.3.2-15703166")
     implementation("commons-codec:commons-codec:1.16.0")
-    implementation("commons-io:commons-io:2.15.1")
+    implementation("commons-io:commons-io:2.16.1")
     implementation("org.dom4j:dom4j:2.1.4")
     implementation("com.google.auto.value:auto-value:1.5.4")
     annotationProcessor("com.google.auto.value:auto-value:1.5.4")

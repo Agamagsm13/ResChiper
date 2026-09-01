@@ -1,14 +1,20 @@
 package io.github.goldfish07.reschiper.plugin;
 
-import com.android.build.gradle.AppExtension;
-import com.android.build.gradle.api.ApplicationVariant;
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension;
+import com.android.build.api.variant.ApplicationVariant;
+
 import io.github.goldfish07.reschiper.plugin.internal.AGP;
 import io.github.goldfish07.reschiper.plugin.tasks.ResChiperTask;
+
+import org.gradle.api.Action;
 import org.gradle.api.GradleException;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Plugin for integrating ResChiper into an Android Gradle project.
@@ -18,9 +24,12 @@ public class ResChiperPlugin implements Plugin<Project> {
     @Override
     public void apply(@NotNull Project project) {
         checkApplicationPlugin(project);
-        AppExtension android = (AppExtension) project.getExtensions().getByName("android");
         project.getExtensions().create("resChiper", Extension.class);
-        project.afterEvaluate(project1 -> android.getApplicationVariants().all(variant -> createResChiperTask(project1, variant)));
+        ApplicationAndroidComponentsExtension androidComponents =
+                project.getExtensions().getByType(ApplicationAndroidComponentsExtension.class);
+        List<ApplicationVariant> variants = new ArrayList<>();
+        androidComponents.onVariants(androidComponents.selector().all(), (Action<ApplicationVariant>) variants::add);
+        project.afterEvaluate(project1 -> variants.forEach(variant -> createResChiperTask(project1, variant)));
     }
 
     /**
